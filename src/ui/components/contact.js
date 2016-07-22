@@ -11,10 +11,12 @@ const contactTemplate = () => {
         </div>
     `
 }
+// we don't actually need to create this controller, but for the sake of
+// easy extension and logging here it is
 class ContactCtrl {
     constructor() {}
 }
-//name, job, phone, company, image url, logo url
+
 const contactConfig = {
     controller: ContactCtrl,
     template: contactTemplate(),

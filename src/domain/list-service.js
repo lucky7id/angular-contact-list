@@ -2,10 +2,11 @@
 // views that need it
 export default class ListService {
     constructor() {
-        console.log(arguments)
         this.items = [];
     }
 
+    // add an interface so the calling service does not need to know
+    // how data is stored in this service
     handle(data) {
         this.items = data;
     }

@@ -1,13 +1,14 @@
 //abstract the angular http service so it can esily be swapped for window.fetch or any other http lib
 class Fetcher {
     constructor(http, q) {
-        // deps are listed without the '$' to indicate they are passed outside of angular context
+        // deps are listed without the '$' to indicate they are not passed via
+        // Angular's DI
         this.http = http;
         this.q = q;
     }
 
     fetch(config, success, fail) {
-        // wrap the http call in q so
+        // we do actually need to know how to handle a success call
         if (!success || typeof success !== 'function') {
             throw new Error('Fetcher.fetch requires a success callback function');
         }

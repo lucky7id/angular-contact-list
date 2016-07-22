@@ -30,6 +30,7 @@ class ContactListFetcher extends Fetcher {
     }
 
     getContactList() {
+        // http config
         const config = {
             url: 'https://candidate-test.herokuapp.com/contacts',
             method: 'GET'
@@ -43,9 +44,11 @@ class ContactListFetcher extends Fetcher {
     }
 }
 
-// let controllers get the deps they need to bootstrap necessary services
+// let controllers handle the DI they need to bootstrap necessary services
 class ContactList {
+    // take in Angular DI, and store refs
     constructor($http, $q, listService) {
+        // compose our service
         this.fetcher = new ContactListFetcher($http, $q, listService);
         this.list = listService;
         this.items = [];
@@ -53,19 +56,21 @@ class ContactList {
     }
 
     boot() {
+        // lets get some data to this view
         this.fetcher.getContactList().then(data => {
             this.items = data
         })
     }
 }
 
+// get that sweet sweet angular injection working with es6 class syntax
 ContactList.$inject = ['$http', '$q', 'listService']
 
+// the Angular interface to our app code
 const config = {
     template: contactListTemplate(),
     controller: ContactList
 }
 
-
-
+// expose the component
 export default config;
