@@ -4,10 +4,15 @@ import Fetcher from '../domain/fetcher';
 const contactListTemplate = () => {
     return `
         <div class="row">
-            <div ng-repeat="item in $ctrl.items">
-                <div class= "col-md-4">
-                    <div class="panel panel-default">
-                        <div class="panel-body">
+            <div class="hero-search col-md-12">
+                <input type="text" ng-model="$ctrl.search" class="form-control" placeholder="filter contacts...">
+            </div>
+        </div>
+        <div class="row contact-list">
+            <div ng-repeat="item in $ctrl.items | filter:$ctrl.search">
+                <div class="col-md-3">
+                    <div class="panel panel-default contact">
+                        <div class="panel-body" style="background: url({{item.profile_image}}) 0% 0% / cover;">
                             <contact data="item"></contact>
                         </div>
                     </div>
