@@ -7,9 +7,7 @@ const contactTemplate = () => {
     `
 }
 class ContactCtrl {
-    constructor() {
-        console.log(arguments, this);
-    }
+    constructor() {}
 }
 //name, job, phone, company, image url, logo url
 const contactConfig = {
